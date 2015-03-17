@@ -92,7 +92,7 @@ func (site Site) parseMeta(ctx *Context, rawContent []byte) ([]byte, error) {
 			pair := spaceRe.Split(cmd[1], 2)
 			if len(pair) == 2 {
 				_, has := ctx.Sections[pair[0]]
-        if !has || cmd[0] == "@append" {
+				if !has || cmd[0] == "@append" {
 					savedTemplateStaack := ctx.TemplateStack
 					ctx.TemplateStack = nil
 					section, err := site.loadDocument(ctx, filepath.Join(SectionDir, pair[1]))
@@ -100,8 +100,8 @@ func (site Site) parseMeta(ctx *Context, rawContent []byte) ([]byte, error) {
 						return nil, err
 					}
 					ctx.TemplateStack = savedTemplateStaack
-          sectionName := pair[0]
-          ctx.Sections[sectionName] = append(ctx.Sections[sectionName], section...)
+					sectionName := pair[0]
+					ctx.Sections[sectionName] = append(ctx.Sections[sectionName], section...)
 				}
 			}
 		default:
